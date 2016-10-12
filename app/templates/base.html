@@ -63,6 +63,25 @@
 			  font-size: 16px;
 			  line-height: 20px;
 			}
+
+			.bar {
+			  fill: steelblue;
+			}
+
+			.axis text {
+			  font: 10px sans-serif;
+			}
+
+			.axis path,
+			.axis line {
+			  fill: none;
+			  stroke: #000;
+			  shape-rendering: crispEdges;
+			}
+
+			.x.axis path {
+			  display: none;
+			}
 		</style>
 
 		
@@ -75,11 +94,11 @@
 	<body>
 		{% if title %}
 		<div>
-			|<a href="intro.html">Intro</a>
-			|<a href="mon.html">Pokemon</a>
-			|<a href="time.html">Time Series</a>
-			|<a href="geo.html">Geo</a>
-			|<a href="index.html">Home</a>
+			|<a href="intro">Intro</a>
+			|<a href="mon">Pokemon</a>
+			|<a href="time">Time Series</a>
+			|<a href="geo">Geo</a>
+			|<a href="index">Home</a>
 		</div>
 		{% endif %}
 		<hr>
