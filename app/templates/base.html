@@ -1,0 +1,92 @@
+<html>
+	<head>
+		{% if title %}
+		<title>{{ title }} - d3 Demo</title>
+		{% else %}
+		<title>Welcome to the d3 Demo</title>
+		{% endif %}
+
+		<style>
+			.chart div {
+			  font: 10px sans-serif;
+			  background-color: steelblue;
+			  text-align: right;
+			  padding: 3px;
+			  margin: 1px;
+			  color: white;
+			}
+
+			body {
+			  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			  margin: auto;
+			  position: relative;
+			  width: 2048px;
+			}
+
+			form {
+			  position: absolute;
+			  right: 10px;
+			  top: 10px;
+			}
+
+			.node {
+			  border: solid 1px white;
+			  font: 12px sans-serif;
+			  line-height: 12px;
+			  overflow: hidden;
+			  position: absolute;
+			  text-indent: 2px;
+			}
+
+			#tooltip {
+			  position: absolute;
+			  width: 220px;
+			  height: auto;
+			  padding: 10px;
+			  background-color: white;
+			  -webkit-border-radius: 10px;
+			  -moz-border-radius: 10px;
+			  border-radius: 10px;
+			  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+			  -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+			  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+			  pointer-events: none;
+			}
+
+			#tooltip.hidden {
+			  display: none;
+			}
+
+			#tooltip p {
+			  margin: 0;
+			  font-family: sans-serif;
+			  font-size: 16px;
+			  line-height: 20px;
+			}
+		</style>
+
+		
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
+		
+
+		
+	</head>
+	<body>
+		{% if title %}
+		<div>
+			|<a href="intro.html">Intro</a>
+			|<a href="mon.html">Pokemon</a>
+			|<a href="time.html">Time Series</a>
+			|<a href="geo.html">Geo</a>
+			|<a href="index.html">Home</a>
+		</div>
+		{% endif %}
+		<hr>
+		<!--Render page here-->
+		{% block content %}{% endblock %}
+
+		
+
+	</body>
+</html>
