@@ -21,6 +21,11 @@
 			  margin: auto;
 			  position: relative;
 			  width: 2048px;
+			  background-color: steelblue;
+			}
+
+			.content {
+				background-color: white;
 			}
 
 			form {
@@ -87,24 +92,180 @@
 		
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
+		<script>
+			var poke_map = {  
+			   "Oddish": 43,
+			   "Weezing": 110,
+			   "Jolteon": 135,
+			   "Graveler": 75,
+			   "Dragonite": 149,
+			   "Gyarados": 130,
+			   "Goldeen": 118,
+			   "Paras": 46,
+			   "Kadabra": 64,
+			   "Metapod": 11,
+			   "Sandslash": 28,
+			   "Pidgey": 16,
+			   "Beedrill": 15,
+			   "Hitmonlee": 106,
+			   "Ponyta": 77,
+			   "Lickitung": 108,
+			   "Poliwrath": 62,
+			   "Machamp": 68,
+			   "Butterfree": 12,
+			   "Starmie": 121,
+			   "Ivysaur": 2,
+			   "Omanyte": 138,
+			   "Onix": 95,
+			   "Gastly": 92,
+			   "Drowzee": 96,
+			   "Slowpoke": 79,
+			   "Horsea": 116,
+			   "Diglett": 50,
+			   "Hypno": 97,
+			   "Rhydon": 112,
+			   "Machoke": 67,
+			   "Poliwhirl": 61,
+			   "Meowth": 52,
+			   "Farfetch'd": 83,
+			   "Snorlax": 143,
+			   "Eevee": 133,
+			   "Sandshrew": 27,
+			   "Nidoqueen": 31,
+			   "Venomoth": 49,
+			   "Victreebel": 71,
+			   "Tentacool": 72,
+			   "Magikarp": 129,
+			   "Magnemite": 81,
+			   "Ditto": 132,
+			   "Nidorino": 33,
+			   "Mew": 151,
+			   "Nidorina": 30,
+			   "Pidgeot": 18,
+			   "Tentacruel": 73,
+			   "Rhyhorn": 111,
+			   "Shellder": 90,
+			   "Geodude": 74,
+			   "Exeggcute": 102,
+			   "Weepinbell": 70,
+			   "Golbat": 42,
+			   "Gengar": 94,
+			   "Mankey": 56,
+			   "Dratini": 147,
+			   "Kabuto": 140,
+			   "Rapidash": 78,
+			   "Raticate": 20,
+			   "Vaporeon": 134,
+			   "Charmeleon": 5,
+			   "Parasect": 47,
+			   "Psyduck": 54,
+			   "Dugtrio": 51,
+			   "Jynx": 124,
+			   "Dodrio": 85,
+			   "Slowbro": 80,
+			   "Seadra": 117,
+			   "Zapdos": 145,
+			   "Arcanine": 59,
+			   "Omastar": 139,
+			   "Persian": 53,
+			   "Nidoking": 34,
+			   "NidoranF": 29,
+			   "Growlithe": 58,
+			   "Charmander": 4,
+			   "NidoranM": 32,
+			   "Articuno": 144,
+			   "Blastoise": 9,
+			   "Golem": 76,
+			   "Krabby": 98,
+			   "Pinsir": 127,
+			   "Moltres": 146,
+			   "Lapras": 131,
+			   "Gloom": 44,
+			   "Flareon": 136,
+			   "Cloyster": 91,
+			   "Kangaskhan": 115,
+			   "Tauros": 128,
+			   "Fearow": 22,
+			   "Bulbasaur": 1,
+			   "Jigglypuff": 39,
+			   "Abra": 63,
+			   "Electrode": 101,
+			   "Arbok": 24,
+			   "Dragonair": 148,
+			   "Doduo": 84,
+			   "Muk": 89,
+			   "Zubat": 41,
+			   "Marowak": 105,
+			   "Wartortle": 8,
+			   "Wigglytuff": 40,
+			   "Charizard": 6,
+			   "Porygon": 137,
+			   "Pikachu": 25,
+			   "Machop": 66,
+			   "Caterpie": 10,
+			   "Kakuna": 14,
+			   "Chansey": 113,
+			   "Seaking": 119,
+			   "Dewgong": 87,
+			   "Hitmonchan": 107,
+			   "Koffing": 109,
+			   "Clefable": 36,
+			   "Weedle": 13,
+			   "Pidgeotto": 17,
+			   "Rattata": 19,
+			   "Mewtwo": 150,
+			   "Exeggutor": 103,
+			   "Primeape": 57,
+			   "Squirtle": 7,
+			   "Vulpix": 37,
+			   "Voltorb": 100,
+			   "Venonat": 48,
+			   "Haunter": 93,
+			   "Bellsprout": 69,
+			   "Tangela": 114,
+			   "Electabuzz": 125,
+			   "Ninetales": 38,
+			   "Venusaur": 3,
+			   "Cubone": 104,
+			   "Raichu": 26,
+			   "Vileplume": 45,
+			   "Clefairy": 35,
+			   "Poliwag": 60,
+			   "Kabutops": 141,
+			   "Magneton": 82,
+			   "Spearow": 21,
+			   "Mr. Mime": 122,
+			   "Staryu": 120,
+			   "Kingler": 99,
+			   "Golduck": 55,
+			   "Scyther": 123,
+			   "Ekans": 23,
+			   "Aerodactyl": 142,
+			   "Alakazam": 65,
+			   "Magmar": 126,
+			   "Grimer": 88,
+			   "Seel": 86
+			}
+		</script>
 		
 
 		
 	</head>
 	<body>
-		{% if title %}
-		<div>
-			|<a href="intro">Intro</a>
-			|<a href="mon">Pokemon</a>
-			|<a href="time">Time Series</a>
-			|<a href="geo">Geo</a>
-			|<a href="index">Home</a>
+		<div class="content">
+			{% if title %}
+			<div>
+				|<a href="intro">Intro</a>
+				|<a href="mon">Pokemon</a>
+				|<a href="time">Time Series</a>
+				|<a href="geo">Geo</a>
+				|<a href="index">Home</a>
+			</div>
+			{% endif %}
+			<hr>
+			<!--Render page here-->
+			{% block content %}{% endblock %}
 		</div>
-		{% endif %}
-		<hr>
-		<!--Render page here-->
-		{% block content %}{% endblock %}
-
 		
 
 	</body>

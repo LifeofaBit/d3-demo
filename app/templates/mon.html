@@ -1,7 +1,5 @@
 {% extends "base.html" %}
 {% block content %}	
-
-
 	<svg class="chart"></svg>
 
 
@@ -11,7 +9,7 @@
 	</form>
 	<script>
 		var margin = {top: 20, right: 30, bottom: 30, left: 40};
-		var width = 1620 - margin.left - margin.right;
+		var width = 1920 - margin.left - margin.right;
 		var barHeight = 500 - margin.top - margin.bottom;
 		var treeHeight = 1024 - margin.top - margin.bottom;
 
@@ -22,13 +20,14 @@
 
 		// Bar Chart
 		var x = d3.scale.ordinal()
-			.rangeRoundBands([0, width], .1);
+			.rangeRoundBands([0, width], .05);
 
 		var y = d3.scale.linear()
 			.range([barHeight, 0]);
 
 		var xAxis = d3.svg.axis()
 			.scale(x)
+			.tickFormat("")
 			.orient("bottom");
 
 		var yAxis = d3.svg.axis()
@@ -41,6 +40,25 @@
 		  .append("g")
 		  	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+		var b_mousemove = function(d) {
+			d3.select(this).attr("fill", "red")
+			// var xPos = d3.event.pageX;
+			// var yPos = d3.event.pageY;
+
+			// d3.select("#tooltip")
+			//   .style("left", xPos + "px")
+			//   .style("top", yPos + "px");
+
+			// d3.select("#tooltip #pokemon").text(d["name"]);
+			// d3.select("#tooltip #rate").text("# of Encounters: " + d["rate"])
+
+			// d3.select("#tooltip").classed("hidden", false);
+		};
+
+		var b_mouseout = function(d) {
+			d3.select(this).attr("fill", "steelblue")
+		};
+
 		d3.tsv('https://s3.amazonaws.com/bas-d3-demo/data/mon_rate_chart.tsv', type, function(err, data) {
 			x.domain(data.map(function(d) { return d.name; }));
 			y.domain([0, d3.max(data, function(d) { return d.rate; })]);
@@ -48,7 +66,16 @@
 			chart.append("g")
 				.attr("class", "x axis")
 				.attr("transform", "translate(0," + barHeight + ")")
-				.call(xAxis);
+				.call(xAxis)
+				.selectAll(".tick").each(function (d,i) {
+					d3.select(this)
+					  .append('image')
+					  .attr('xlink:href', "/static/img/" + poke_map[d] + ".png")
+					  .attr("x", -10)
+					  .attr("y", 7)
+					  .attr('width', 20)
+					  .attr('height', 20);
+				});
 
 			chart.append("g")
 				.attr("class", "y axis")
@@ -61,7 +88,9 @@
 			  	.attr("x", function(d) { return x(d.name); })
 			  	.attr("y", function(d) { return y(d.rate); })
 			  	.attr("height", function(d) { return barHeight - y(d.rate); })
-			  	.attr("width", x.rangeBand());
+			  	.attr("width", x.rangeBand())
+			  	.on("mousemove", b_mousemove)
+			  	.on("mouseout", b_mouseout);
 		});
 
 		function type(d) {
@@ -77,15 +106,15 @@
 			.sticky(true)
 			.value(function(d) {return d.size;});
 
-		var div = d3.select("body").append("div")
+		var div = d3.select("body").select("div.content").append("div")
 			.style("position", "relative")
 			.style("width", (width + margin.left + margin.right) + "px")
-			.style("height", (treeHeight + margin.top + margin.bottom + barHeight) + "px")
+			.style("height", (treeHeight + 15 + margin.top + margin.bottom + barHeight) + "px")
 			.style("left", margin.left + "px")
 			.style("top", margin.top + "px");
 
 		var mousemove = function(d) {
-			var xPos = d3.event.pageX;
+			var xPos = d3.event.pageX - 250;
 			var yPos = d3.event.pageY;
 
 			d3.select("#tooltip")
@@ -136,6 +165,6 @@
 	<div id="tooltip" class="hidden">
 		<p><strong id="pokemon"></strong></p>
 		<p><span id="encounters"></span></p>
+		<p><span id="rate"></span></p>
 	</div>
-
 {% endblock %}
