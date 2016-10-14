@@ -13,11 +13,6 @@
 		var barHeight = 500 - margin.top - margin.bottom;
 		var treeHeight = 1024 - margin.top - margin.bottom;
 
-		// var margin = {top: 40, right: 10, bottom: 10, left: 10};
-		// var width = 2048 - margin.left - margin.right;
-		// var height = 1024 - margin.top - margin.bottom;
-
-
 		// Bar Chart
 		var x = d3.scale.ordinal()
 			.rangeRoundBands([0, width], .05);
@@ -73,8 +68,8 @@
 					  .attr('xlink:href', "/static/img/" + poke_map[d] + ".png")
 					  .attr("x", -10)
 					  .attr("y", 7)
-					  .attr('width', 20)
-					  .attr('height', 20);
+					  .attr('width', 18)
+					  .attr('height', 18);
 				});
 
 			chart.append("g")
@@ -114,6 +109,7 @@
 			.style("top", margin.top + "px");
 
 		var mousemove = function(d) {
+			console.log(d3.event.pageX)
 			var xPos = d3.event.pageX - 250;
 			var yPos = d3.event.pageY;
 

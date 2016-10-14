@@ -13,3 +13,7 @@ def intro():
 @app.route('/mon')
 def mon():
 	return render_template('mon.html', title="Pokemon Data")
+
+@app.route('/stream')
+def stream():
+	return render_template('stream.html', title="Streaming Viz Examples")
