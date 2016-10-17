@@ -8,7 +8,7 @@ def index():
 
 @app.route('/intro')
 def intro():
-	return render_template('intro.html')
+	return render_template('ex_pres.html')
 
 @app.route('/mon')
 def mon():
