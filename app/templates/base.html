@@ -6,98 +6,27 @@
 		<title>Welcome to the d3 Demo</title>
 		{% endif %}
 
-		<style>
-			.chart div {
-			  font: 10px sans-serif;
-			  background-color: steelblue;
-			  text-align: right;
-			  padding: 3px;
-			  margin: 1px;
-			  color: white;
-			}
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+  		<meta name="author" content="Hakim El Hattab">
 
-			body {
-			  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-			  margin: auto;
-			  position: relative;
-			  width: 1850px;
-			  background-color: steelblue;
-			}
+  		<meta name="apple-mobile-web-app-capable" content="yes" />
+  		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-			.content {
-				background-color: white;
-			}
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-			form {
-			  position: absolute;
-			  right: 10px;
-			  top: 10px;
-			}
+		<link rel="stylesheet" href="http://uwdata.github.io/d3-tutorials/reveal.js/css/reveal.css">
+  		<link rel="stylesheet" href="http://uwdata.github.io/d3-tutorials/reveal.js/css/theme/white.css" id="theme">
+  		<link rel="stylesheet" href="/static/css/theme.css">
 
-			.node {
-			  border: solid 1px white;
-			  font: 12px sans-serif;
-			  line-height: 12px;
-			  overflow: hidden;
-			  position: absolute;
-			  text-indent: 2px;
-			}
+  		<link rel="stylesheet" href="http://uwdata.github.io/d3-tutorials/highlight.js/src/styles/obsidian.css" id="highlight-theme">
 
-			#tooltip {
-			  position: absolute;
-			  width: 220px;
-			  height: auto;
-			  padding: 10px;
-			  background-color: white;
-			  -webkit-border-radius: 10px;
-			  -moz-border-radius: 10px;
-			  border-radius: 10px;
-			  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-			  -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-			  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-			  pointer-events: none;
-			}
+  		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+		  document.write('<link rel="stylesheet" href="http://uwdata.github.io/d3-tutorials/reveal.js/css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper') + '.css" type="text/css" media="print">');
+		</script>
 
-			#tooltip.hidden {
-			  display: none;
-			}
-
-			#tooltip p {
-			  margin: 0;
-			  font-family: sans-serif;
-			  font-size: 16px;
-			  line-height: 20px;
-			}
-
-			.bar {
-			  fill: steelblue;
-			}
-
-			.axis text {
-			  font: 10px sans-serif;
-			}
-
-			.axis path,
-			.axis line {
-			  fill: none;
-			  stroke: #000;
-			  shape-rendering: crispEdges;
-			}
-
-			.x.axis path {
-			  display: none;
-			}
-
-			.line {
-			  fill: none;
-			  stroke: #000;
-			  stroke-width: 1.5px;
-			}
-
-			.x.axis line {
-			  shape-rendering: auto;
-			}
-		</style>
+		<script src="http://uwdata.github.io/d3-tutorials/js/jquery.js"></script>
+		<script src="http://uwdata.github.io/d3-tutorials/js/d3.js"></script>
 
 		
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>

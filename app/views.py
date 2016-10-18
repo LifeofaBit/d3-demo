@@ -8,12 +8,12 @@ def index():
 
 @app.route('/intro')
 def intro():
-	return render_template('ex_pres.html')
+	return render_template('intro.html')
 
 @app.route('/mon')
 def mon():
-	return render_template('mon.html', title="Pokemon Data")
+	return render_template('mon.html')
 
-@app.route('/stream')
-def stream():
-	return render_template('stream.html', title="Streaming Viz Examples")
+# @app.route('/stream')
+# def stream():
+# 	return render_template('stream.html', title="Streaming Viz Examples")

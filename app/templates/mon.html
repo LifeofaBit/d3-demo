@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 {% block content %}	
-	<svg class="chart"></svg>
+	<div class="treemap">
+		<form>
+		  <label><input type="radio" name="mode" value="size" checked> Size</label>
+		  <label><input type="radio" name="mode" value="count"> Count</label>
+		</form>
+	</div>
 
+	<div class="bar-chart">
+		<svg class="mon-chart"></svg>
+	</div>
 
-	<form>
-	  <label><input type="radio" name="mode" value="size" checked> Size</label>
-	  <label><input type="radio" name="mode" value="count"> Count</label>
-	</form>
 	<script>
 		var margin = {top: 20, right: 30, bottom: 30, left: 30};
 		var width = 1850 - margin.left - margin.right;
@@ -29,9 +33,9 @@
 			.scale(y)
 			.orient("left");
 
-		var chart = d3.select(".chart")
+		var chart = d3.select(".mon-chart")
 			.attr("width", width + margin.left + margin.right)
-			.attr("height", barHeight + margin.top + margin.bottom)
+			.attr("height", barHeight + treeHeight + margin.top + margin.bottom)
 		  .append("g")
 		  	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -101,10 +105,10 @@
 			.sticky(true)
 			.value(function(d) {return d.size;});
 
-		var div = d3.select("body").select("div.content").append("div")
+		var div = d3.select("body").select("div.content").select("div.treemap").append("div")
 			.style("position", "relative")
 			.style("width", (width + margin.left + margin.right) + "px")
-			.style("height", (treeHeight + 15 + margin.top + margin.bottom + barHeight) + "px")
+			.style("height", (treeHeight + margin.top + margin.bottom) + "px")
 			.style("left", margin.left + "px")
 			.style("top", margin.top + "px");
 

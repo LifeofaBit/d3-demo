@@ -1,0 +1,235 @@
+.mon-chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: auto;
+  position: relative;
+  width: 1850px;
+  background-color: steelblue;
+}
+
+.content {
+  background-color: white;
+}
+
+form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.node {
+  border: solid 1px white;
+  font: 12px sans-serif;
+  line-height: 12px;
+  overflow: hidden;
+  position: absolute;
+  text-indent: 2px;
+}
+
+#tooltip {
+  position: absolute;
+  width: 220px;
+  height: auto;
+  padding: 10px;
+  background-color: white;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+#tooltip.hidden {
+  display: none;
+}
+
+#tooltip p {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.x.axis line {
+  shape-rendering: auto;
+}	
+
+/*** reveal.js ***/
+/* Theme */
+
+.reveal {
+  font-size: 30px;
+  font-family: Avenir, Helvetica Neue, Helvetica, Arial;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  font-family: Avenir, Helvetica Neue, Helvetica, Arial;
+  text-transform: none;
+  text-align: center;
+}
+
+.white {
+  background-color: white;
+}
+
+.red {
+  color: rgb(255, 150, 150);
+}
+
+.source {
+  opacity: 0.7;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.left-align {
+  text-align: left;
+}
+
+.chart {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.chart .background {
+  fill: none;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  fill: #fff;
+  font-size: 18px;
+}
+
+.axis.minor,
+.axis.minor text {
+  display: none;
+}
+
+.chart .bar,
+.chart .dot,
+.chart .line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.chart .bar,
+.chart .dot,
+.chart .area {
+  fill: #6baed6;
+}
+
+.interpolate.chart circle {
+  fill: #fd8d3c;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+
+/* Code */
+.reveal pre {
+  margin: 0;
+  box-shadow: none;
+  width: 100%;
+}
+
+.reveal pre code {
+  color: #E0E2E4;
+  background: #282B2E;
+}
+
+iframe {
+  background-color: #222;
+}
+
+.left{
+  float:left;
+  width:50%;
+  text-align: center;
+}
+.right{
+  float:left;
+  width:50%;
+  text-align: center;
+}
+
+.reveal .left pre, .reveal .right pre{
+  margin: 0;
+}
+
+.reveal .left pre code, .reveal .right pre code{
+  padding:3px;
+}
+
+.reveal pre code {
+  word-wrap: break-word;
+  max-height: 500px;
+}
+
+pre .typeparam{
+  color: #fcba8f;
+}
+
+.right iframe{
+  width:100%;
+}
+
+.see-also{
+  font-size: 50%;
+}
+
+.overflow-y{
+   overflow-y: scroll;
+}
+
+.block, .reveal small.block{
+  display: block;
+}

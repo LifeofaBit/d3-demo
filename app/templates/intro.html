@@ -1,0 +1,461 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="reveal">
+
+    <div class="slides">
+      <section class="center">
+        <h1>
+          <small>D3.js</small>
+        </h1>
+        <h4>By Matt Downs</h4>
+        <br/>
+        <p>
+          <small>
+            Adapted from a tutorial by <a href="http://homes.cs.washington.edu/~domoritz/">Dominik Moritz</a> (<a href="http://twitter.com/domoritz">@domoritz</a>) and <a href="http://kanitw.yellowpigz.com/">Kanit "Ham" Wongsuphasawat</a> (<a href="http://twitter.com/kanitw">@kanitw</a>)
+          </small>
+        </p>
+        <p>
+          <small>
+            <a href="http://idl.cs.washington.edu">Interactive Data Lab</a>,
+            <a href="http://uw.edu">University of Washington</a>
+          </small>
+        </p>
+        <p><small><small>(Based on <a href="http://vadim.ogievetsky.com/IntroD3">Vadim Ogievetsky</a> and <a href="http://alignedleft.com/tutorials/d3/">Scott Murray</a>'s work)</small></small></p>
+      </section>
+      <section data-markdown>
+## Outline
+
+* What is D3?
+* Selections & Data
+* Enter & Exit
+* Transitions
+* Integrations/Plug-ins
+* Examples
+
+      </section>
+      <section>
+        <section>
+          <h2>Data-Driven Documents (D3)</h2>
+        </section>
+
+        <section>
+          <h2>What is D3?</h2>
+          <ul>
+          	<li>JavaScript library for data visualization and manipulation</li>
+            <li>It is <span class="red">not</span> a chart library (but it can make charts)</li>
+            <li>Uses HTML, CSS, and SVG to render visualizations on web browsers</li>
+          </ul>
+          <img src="http://uwdata.github.io/d3-tutorials/img/d3.png" style="max-width: 600px; max-height: 400px;display:block;margin-left:auto;margin-right:auto;margin-top:25px;">
+        </section>
+
+       	<section>
+          <h2>HyperText Markup Language (HTML)</h2>
+          <ul>
+          <li>Web standard for creating web pages</li>
+          <li>
+          </ul>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/HTML.svg" style="display:block;margin-left:auto;margin-right:auto;">
+        </section>
+
+        <section>
+          <h2>CSS & SVG</h2>
+          <ul>
+          <li>Cascading Style Sheets (CSS) helps describe the presentation of a document.  Applies to HTML, XML, and SVG</li>
+          <li>CSS is designed to separate the presentation details (fonts, sizes, colors) from the content</li>
+          </ul>
+          <hr>
+          <ul>
+          <li>Scalable Vector Graphics (SVG) is an image format for two-dimensional graphics</li>
+          <li>Based on XML, so it can be compressed, indexed, searched, and scripted</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Document Object Model</h2>
+          <ul>
+            <li>An application programming interface that maps HTML/XML to a tree structure</li>
+            <li>The DOM is a web standard, cross-platform and language independent</li>
+            <li>Used to programatically modify and render documents from the tree structure</li>
+          </ul>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/DOM-model.svg" style="width:300px; height:310px;display:block;margin-left:auto;margin-right:auto;">
+        </section>
+
+        <section>
+          <h2>D3 is Data ↦ Elements</h2>
+          <ul>
+          <li>Visualizing Data with Web Standards (HTML/SVG)</li>
+          <li>Data ↦ Elements – constructing the DOM from Data</li>
+          <li>In visualization, each data point has a corresponding element (graphical marks). D3 helps you maintain this mapping!</li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h2>Selections</h2>
+
+          <p>D3 uses <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started/Selectors">CSS Selectors</a></p>
+
+          <small>Single selector:</small>
+          <pre><code class="css" data-trim>
+#foo        // <any id="foo"> </any>
+foo         // <foo> </foo>
+.foo        // <any class="foo"> </any>
+[foo=bar]   // <any foo="bar"> </any>
+foo bar     // <foo><bar> </foo></bar>
+          </code></pre>
+
+          <br>
+          <small>Multiple selectors:</small>
+          <pre><code class="css" data-trim>
+foo.bar     // <foo class="bar"> </foo>
+foo#bar     // <foo id="bar"> </foo>
+          </code></pre>
+        </section>
+
+        <section>
+          <h3><code>.select()</code></h3>
+          <div class="left">
+            <p data-height="400" data-theme-id="0" data-slug-hash="GJKxYZ" data-user="domoritz" data-default-tab="js" class='codepen'>
+            </p>
+          </div>
+
+          <div class="right">
+            <p data-height="400" data-theme-id="0" data-slug-hash="GJKxYZ" data-user="domoritz" data-default-tab="result" class='codepen'>
+            </p>
+          </div>
+        </section>
+        <section>
+          <h3><code>.select()</code> + <code>.attr()</code>, <code>.style()</code></h3>
+          <p>Select and modify element properties</p>
+          <div class="left">
+            <p data-height="600" data-theme-id="0" data-slug-hash="LVPdgK" data-user="domoritz" data-default-tab="js" class='codepen'>
+            </p>
+          </div>
+
+          <div class="right">
+            <p data-height="400" data-theme-id="0" data-slug-hash="LVPdgK" data-user="domoritz" data-default-tab="result" class='codepen'>
+            </p>
+          </div>
+          <p><small>Note: notice chained syntax, object as argument</small></p></footer>
+        </section>
+        <section>
+          <h2><code>.data()</code></h2>
+          <h4>Data ↦ Attributes</h4>
+        </section>
+        <section>
+          <h3><code>.data()</code></h3>
+          <p>Tell D3 that you want the selected elements to correspond to data!</p>
+
+          <div class="leftright">
+            <div class="left">
+              <p data-height="500" data-theme-id="0" data-slug-hash="bdbvJr" data-user="domoritz" data-default-tab="js" class='codepen'>
+              </p>
+            </div>
+
+            <div class="right">
+              <p data-height="400" data-theme-id="0" data-slug-hash="bdbvJr" data-user="domoritz" data-default-tab="result" class='codepen'>
+              </p>
+            </div>
+          </div>
+
+          <div class="note">
+            <small>See in console that the selected rect selection object is an array of array that embed data in <code>__data__</code> property!</small>
+          </div>
+        </section>
+        <section>
+          <h3>Selection Object</h3>
+          <ul>
+            <li>An array of arrays</li>
+            <li>if <code>.data()</code> is called, <code>__data__</code> of each element will contain the data mapped to that element.</li>
+          </ul>
+          <img src="http://uwdata.github.io/d3-tutorials/img/__data__.png" height="60" width="155" alt="">
+          <p><small>You should have seen this from last slide!</small></p>
+
+        </section>
+        <section>
+          <h3><div class="code">.data()</div></h3>
+          <p>Data can be objects too!</p>
+
+          <div class="left">
+            <p data-height="510" data-theme-id="0" data-slug-hash="jPNzRZ" data-user="domoritz" data-default-tab="js" class='codepen'>
+            </p>
+          </div>
+
+          <div class="right">
+            <p data-height="400" data-theme-id="0" data-slug-hash="jPNzRZ" data-user="domoritz" data-default-tab="result" class='codepen'>
+            </p>
+          </div>
+        </section>
+        <section>
+          <h3><code>.data()</code></h3>
+          <h4>What if number of data doesn't match number of items selected?</h4>
+          <div class="left">
+            <p data-height="510" data-theme-id="0" data-slug-hash="JdPLwq" data-user="domoritz" data-default-tab="js" class='codepen'>
+            </p>
+          </div>
+
+          <div class="right">
+            <p data-height="400" data-theme-id="0" data-slug-hash="JdPLwq" data-user="domoritz" data-default-tab="result" class='codepen'>
+            </p>
+          </div>
+        </section>
+      </section>
+      <section>
+        <section class="center">
+          <h3>Thinking with Join</h3>
+          <style>
+            #join-svg circle {
+              fill: none;
+              fill-opacity: .6;
+              stroke: black;
+              stroke-width: 1.5px;
+            }
+            #join-svg text{
+              font-size: 20px;
+              fill:white;
+            }
+
+          </style>
+          <br/><br/>
+          <svg id="join-svg" width="720" height="240"><g transform="translate(0,128)"><g transform="translate(300)"><circle r="110" style="fill: #318be1;"></circle><text y="-120" dy=".35em" text-anchor="middle" style="font-weight: bold;">Data</text><text x="-50" dy=".35em" text-anchor="middle">Enter</text></g><text x="360" dy=".35em" text-anchor="middle">Update</text><g transform="translate(420)"><circle r="110" style="fill: #FF7A00;"></circle><text y="-120" dy=".35em" text-anchor="middle" style="font-weight: bold;">Elements</text><text x="50" dy=".35em" text-anchor="middle">Exit</text></g></g></svg>
+
+          <div style="text-align: left">
+          <p>Calling <code>.data()</code> creates three arrays:</p>
+          <ul>
+            <li><code>enter</code> (Data without corresponding DOM elements)</li>
+            <li><code>update</code> (DOM elements mapped to data)</li>
+            <li><code>exit</code> (DOM elements now missing data)</li>
+          </ul>
+          </p><code>.data()</code> returns the update.</p>
+          <br/>
+          <p class="see-also">
+            <small><a href="http://bost.ocks.org/mike/join/">http://bost.ocks.org/mike/join/</a></small>
+          </p>
+          </div>
+        </section>
+        <section>
+          <h3><code>.enter()</code></h3>
+          <div class="left">
+            <p data-height="510" data-theme-id="0" data-slug-hash="Fawcj" data-user="kanitw" data-default-tab="js" class='codepen'>
+            </p>
+          </div>
+
+          <div class="right">
+            <p data-height="400" data-theme-id="0" data-slug-hash="Fawcj" data-user="kanitw" data-default-tab="result" class='codepen'>
+            </p>
+          </div>
+        </section>
+        <section>
+          <h3><code>.enter()</code></h3>
+          <p>Shorter: append, then update all together!</p>
+          <div class="left">
+            <p data-height="500" data-theme-id="0" data-slug-hash="kvCjf" data-user="kanitw" data-default-tab="js" class='codepen'>
+            </p>
+          </div>
+
+          <div class="right">
+            <p data-height="400" data-theme-id="0" data-slug-hash="kvCjf" data-user="kanitw" data-default-tab="result" class='codepen'>
+            </p>
+          </div>
+        </section>
+        <section>
+          <h3><code>.enter()</code> from scratch</h3>
+          <p>This is a common way that people build visualization in D3!</p>
+
+          <div class="left">
+            <p data-height="500" data-theme-id="0" data-slug-hash="kvCjf" data-user="kanitw" data-default-tab="js" class='codepen'>
+            </p>
+          </div>
+
+          <div class="right">
+            <p data-height="400" data-theme-id="0" data-slug-hash="kvCjf" data-user="kanitw" data-default-tab="result" class='codepen'>
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h3><code>.exit()</code></h3>
+
+          <div class="left">
+            <p data-height="500" data-theme-id="0" data-slug-hash="maGjx" data-user="kanitw" data-default-tab="js" class='codepen'>
+            </p>
+          </div>
+
+          <div class="right">
+            <p data-height="400" data-theme-id="0" data-slug-hash="maGjx" data-user="kanitw" data-default-tab="result" class='codepen'>
+            </p>
+          </div>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h2>Transitions</h2>
+        </section>
+        <section>
+          <h3><code>.transition()</code></h3>
+          <div class="left">
+            <p data-height="500" data-theme-id="0" data-slug-hash="zGOjOb" data-user="domoritz" data-default-tab="js" class='codepen'>
+            </p>
+          </div>
+          <div class="right">
+            <p data-height="400" data-theme-id="0" data-slug-hash="zGOjOb" data-user="domoritz" data-default-tab="result" class='codepen'>
+            </p>
+          </div>
+          <p><small>Note: Transitions in D3 use <i>cubic-in-out</i> as default easing functions. But there are <a href="https://github.com/mbostock/d3/wiki/Transitions#wiki-d3_ease">others</a>.</small></p>
+        </section>
+        <section>
+          <h3>Nested <code>.transition()</code> & <code>.delay()</code></h3>
+          <div class="left">
+            <p data-height="500" data-theme-id="0" data-slug-hash="xGKjKo" data-user="domoritz" data-default-tab="js" class='codepen'>
+            </p>
+          </div>
+
+          <div class="right">
+            <p data-height="400" data-theme-id="0" data-slug-hash="xGKjKo" data-user="domoritz" data-default-tab="result" class='codepen'>
+            </p>
+          </div>
+        </section>
+        <section>
+          <h3>Mapping Data to Elements</h3>
+          <p>The default is index mapping.</p>
+          <div class="left">
+            <p data-height="500" data-theme-id="0" data-slug-hash="DwyLs" data-user="kanitw" data-default-tab="js" class='codepen'>
+            </p>
+          </div>
+
+          <div class="right">
+            <p data-height="400" data-theme-id="0" data-slug-hash="DwyLs" data-user="kanitw" data-default-tab="result" class='codepen'>
+            </p>
+          </div>
+        </section>
+        <section>
+          <h3>Join key – <code>.data(...,key)</code></h3>
+          <p>A key should be a unique string.</p>
+          <div class="left">
+            <p data-height="400" data-theme-id="0" data-slug-hash="FHtjf" data-user="kanitw" data-default-tab="js" class='codepen'>
+            </p>
+          </div>
+
+          <div class="right">
+            <p data-height="400" data-theme-id="0" data-slug-hash="FHtjf" data-user="kanitw" data-default-tab="result" class='codepen'>
+            </p>
+          </div>
+          <p class="see-also">
+            <small>http://bost.ocks.org/mike/selection/#key</small>
+          </p>
+        </section>
+        <section>
+          <h3>Join key – <code>.data(...,key)</code></h3>
+          <p>Notice how you can save lines of code with <code>selection.call()</code></p>
+          <div class="left">
+            <p data-height="500" data-theme-id="0" data-slug-hash="mJbxGV" data-user="domoritz" data-default-tab="js" class='codepen'>
+            </p>
+          </div>
+
+          <div class="right">
+            <p data-height="400" data-theme-id="0" data-slug-hash="mJbxGV" data-user="domoritz" data-default-tab="result" class='codepen'>
+            </p>
+          </div>
+          <p class="see-also">
+            <small>http://bost.ocks.org/mike/selection/#key</small>
+          </p>
+        </section>
+        <section>
+          <h3>Join key</h3>
+          <p>New Data?</p>
+
+          <div class="left">
+            <p data-height="400" data-theme-id="0" data-slug-hash="GsKnv" data-user="kanitw" data-default-tab="js" class='codepen'>
+            </p>
+          </div>
+
+          <div class="right">
+            <p data-height="400" data-theme-id="0" data-slug-hash="GsKnv" data-user="kanitw" data-default-tab="result" class='codepen'>
+            </p>
+          </div>
+          <p class="see-also"><small>See even better <a href="http://mbostock.github.io/d3/tutorial/bar-2.html">bars transition</a>.</small></p>
+        </section>
+
+        <section>
+          <h3>See also</h3>
+
+          <ul>
+            <li>
+              General Update Pattern <a href="http://bl.ocks.org/mbostock/3808218">I</a>, <a href="http://bl.ocks.org/mbostock/3808221">II</a>, <a href="http://bl.ocks.org/3808234">III</a></h4>
+            </li>
+            <li>
+              <a href="http://mbostock.github.io/d3/tutorial/circle.html">Three Little Circles</a>
+            </li>
+            <li><a href="http://bost.ocks.org/mike/transition/">Working with Transitions</a></li>
+          </ul>
+        </section>
+      </section>
+
+      <section>
+        <h2><a href="/mon">Now for some examples!</a></h2>
+      </section>
+    </div>
+
+  </div>
+
+  <script src="http://uwdata.github.io/d3-tutorials/reveal.js/lib/js/head.min.js"></script>
+  <script src="http://uwdata.github.io/d3-tutorials/reveal.js/js/reveal.js"></script>
+
+  <script>
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    slideNumber: true,
+    transitionSpeed: 'fast',
+
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'slide', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Parallax scrolling
+    // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    // parallaxBackgroundSize: '2100px 900px',
+
+    // Optional libraries used to extend on reveal.js
+    dependencies: [{
+      src: 'http://uwdata.github.io/d3-tutorials/reveal.js/lib/js/classList.js',
+      condition: function() {
+        return !document.body.classList;
+      }
+    }, {
+      src: 'http://uwdata.github.io/d3-tutorials/reveal.js/plugin/markdown/marked.js',
+      condition: function() {
+        return !!document.querySelector('[data-markdown]');
+      }
+    }, {
+      src: 'http://uwdata.github.io/d3-tutorials/reveal.js/plugin/markdown/markdown.js',
+      condition: function() {
+        return !!document.querySelector('[data-markdown]');
+      }
+    }, {
+      src: 'http://uwdata.github.io/d3-tutorials/reveal.js/plugin/highlight/highlight.js',
+      async: true,
+      callback: function() {
+        hljs.initHighlightingOnLoad();
+      }
+    }, {
+      src: 'http://uwdata.github.io/d3-tutorials/reveal.js/plugin/zoom-js/zoom.js',
+      async: true,
+      condition: function() {
+        return !!document.body.classList;
+      }
+    }, {
+      src: 'http://uwdata.github.io/d3-tutorials/reveal.js/plugin/notes/notes.js',
+      async: true,
+      condition: function() {
+        return !!document.body.classList;
+      }
+    }]
+  });
+  </script>
+  <script async src="//codepen.io/assets/embed/ei.js"></script>
+
+{% endblock %}
